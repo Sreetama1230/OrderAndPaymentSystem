@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -19,6 +21,7 @@ public class Payment {
 	@Column
 	private String paymentReference;
 	@Column
+	@Enumerated(EnumType.STRING)
 	private Status status;
 	@Column
 	private BigDecimal amount;
@@ -26,48 +29,68 @@ public class Payment {
 	private LocalDateTime paidAt;
 	
 	@OneToOne
-	@JoinColumn(name = "order_id")
+	@JoinColumn(name = "order_id",unique = true)
 	private Order order;
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getPaymentReference() {
 		return paymentReference;
 	}
+
 	public void setPaymentReference(String paymentReference) {
 		this.paymentReference = paymentReference;
 	}
+
 	public Status getStatus() {
 		return status;
 	}
+
 	public void setStatus(Status status) {
 		this.status = status;
 	}
+
 	public BigDecimal getAmount() {
 		return amount;
 	}
+
 	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
 	}
+
 	public LocalDateTime getPaidAt() {
 		return paidAt;
 	}
+
 	public void setPaidAt(LocalDateTime paidAt) {
 		this.paidAt = paidAt;
 	}
+
 	public Order getOrder() {
 		return order;
 	}
+
 	public void setOrder(Order order) {
 		this.order = order;
 	}
-	public Payment() {
+
+	public Payment(String paymentReference, Status status, BigDecimal amount, LocalDateTime paidAt, Order order) {
 		super();
-		// TODO Auto-generated constructor stub
+		this.paymentReference = paymentReference;
+		this.status = status;
+		this.amount = amount;
+		this.paidAt = paidAt;
+		this.order = order;
 	}
+	
+
+	
 	
 	
 	

@@ -17,18 +17,26 @@ public class Tag {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column
-	private String unique;
+	@Column(unique = true)
+	private String name;
 	
 	@ManyToMany(mappedBy = "tags")
 	List<Product> products;
 
-	public String getUnique() {
-		return unique;
+	public Long getId() {
+		return id;
 	}
 
-	public void setUnique(String unique) {
-		this.unique = unique;
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public List<Product> getProducts() {
@@ -39,12 +47,12 @@ public class Tag {
 		this.products = products;
 	}
 
-	public Tag(Long id, String unique, List<Product> products) {
+	public Tag(String name, List<Product> products) {
 		super();
-		this.id = id;
-		this.unique = unique;
+		this.name = name;
 		this.products = products;
 	}
-	
+
+
 	
 }

@@ -31,61 +31,76 @@ public class OrderItem {
 	@ManyToOne
 	@JoinColumn(name = "product_id")
 	private  Product product;
-	
-	
-	
-	public OrderItem(long id, int quantity, BigDecimal pricePerUnit, BigDecimal totalPrice, Order order,
-			Product product) {
-		super();
-		this.id = id;
-		this.quantity = quantity;
-		this.pricePerUnit = pricePerUnit;
-		this.totalPrice = totalPrice;
-		this.order = order;
-		this.product = product;
-	}
-	public OrderItem() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
+
+
 	public long getId() {
 		return id;
 	}
+
+
 	public void setId(long id) {
 		this.id = id;
 	}
+
+
 	public int getQuantity() {
 		return quantity;
 	}
+
+
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+
+
 	public BigDecimal getPricePerUnit() {
 		return pricePerUnit;
 	}
+
+
 	public void setPricePerUnit(BigDecimal pricePerUnit) {
 		this.pricePerUnit = pricePerUnit;
 	}
+
+
 	public BigDecimal getTotalPrice() {
 		return totalPrice;
 	}
+
+
 	public void setTotalPrice(BigDecimal totalPrice) {
 		this.totalPrice = totalPrice;
 	}
+
+
 	public Order getOrder() {
 		return order;
 	}
+
+
 	public void setOrder(Order order) {
 		this.order = order;
 	}
+
+
 	public Product getProduct() {
 		return product;
 	}
+
+
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-	
+
+
+	public OrderItem(int quantity, BigDecimal pricePerUnit, BigDecimal totalPrice, Order order, Product product) {
+		super();
+		this.quantity = quantity;
+		this.pricePerUnit = pricePerUnit;
+		this.totalPrice = totalPrice;
+		this.order = order;
+		this.product = product;
+	}
 	
 	
 	
