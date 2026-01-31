@@ -1,3 +1,6 @@
+Completed -
 - Added required entities
 - Enabled actutor endpoint
-- added profiles
+- Added profiles
+In-progress
+ - Creat the APIs
