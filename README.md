@@ -1,0 +1,3 @@
+- Added required entities
+- Enabled actutor endpoint
+- added profiles
