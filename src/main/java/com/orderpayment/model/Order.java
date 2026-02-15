@@ -3,6 +3,10 @@ package com.orderpayment.model;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import com.orderpayment.response.OrderItemResponse;
+import com.orderpayment.response.OrderResponse;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -23,7 +27,7 @@ import jakarta.persistence.Table;
 public class Order {
 
 	@Id
-	@GeneratedValue(strategy =  GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@Column
 	private String orderNumber;
@@ -35,16 +39,16 @@ public class Order {
 	@Column
 	private LocalDateTime createdAt;
 	@Column
-	private  LocalDateTime updatedAt;
-	
+	private LocalDateTime updatedAt;
+
 	@ManyToOne
-	@JoinColumn(name="user_id")
+	@JoinColumn(name = "user_id")
 	private User user;
-	
-	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL,orphanRemoval = true)
+
+	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
 	List<OrderItem> orderItems;
-	
-	@OneToOne(mappedBy = "order",cascade = CascadeType.ALL)
+
+	@OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
 	private Payment payment;
 
 	public long getId() {
@@ -131,7 +135,14 @@ public class Order {
 		this.orderItems = orderItems;
 		this.payment = payment;
 	}
-	
 
-	
+	public OrderResponse convertToOrderResponse(Order o) {
+		List<OrderItemResponse> oirs = o.getOrderItems().stream()
+				.map(ot -> OrderItemResponse.convertToOrderItemResponse(ot)).collect(Collectors.toList());
+		OrderResponse orderResponse = new OrderResponse(o.id, o.orderNumber, o.status, o.totalAmount, o.createdAt,
+				o.updatedAt, o.orderNumber, oirs, o.orderNumber);
+
+		return orderResponse;
+	}
+
 }

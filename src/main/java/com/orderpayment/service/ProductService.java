@@ -1,0 +1,42 @@
+package com.orderpayment.service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.orderpayment.model.Product;
+import com.orderpayment.model.Tag;
+import com.orderpayment.repo.ProductRepository;
+import com.orderpayment.repo.TagRepository;
+import com.orderpayment.request.ProductRequest;
+import com.orderpayment.response.ProductResponse;
+
+@Service
+public class ProductService {
+
+	@Autowired
+	private ProductRepository productRepository;
+
+	@Autowired
+	private TagRepository tagRepository;
+
+	public ProductResponse saveProduct(ProductRequest productRequest) {
+		Set<Tag> tags = productRequest.getTagRequest().stream().map(tr -> Tag.convertToTag(tr))
+				.collect(Collectors.toSet());
+		Product newProd = ProductRequest.convertToProduct(productRequest);
+		for (Tag tg : tags) {
+			tg.setProducts(new ArrayList<>(List.of(newProd)));
+			tagRepository.save(tg);
+		}
+
+		newProd.setTags(tags);
+
+		Product pct = productRepository.save(newProd);
+
+		return ProductResponse.convertToProductResponse(pct);
+	}
+}

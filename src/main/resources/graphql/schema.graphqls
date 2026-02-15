@@ -1,0 +1,27 @@
+input ProductRequest{
+name:String
+description:String
+price:Float
+stockQuantity:Int
+active:Boolean
+tagRequest:Set<TagRequest>
+}
+
+type TagRequest{
+name:String
+}
+
+type ProductResponse{
+name:String
+description:String
+price:Float
+stockQuantity:Int
+active:Boolean
+tagRequest:Set<TagResponse>
+}
+
+type TagResponse{
+id:Int
+name:String
+}
+

@@ -1,6 +1,8 @@
-package com.orderpayment.dto;
+package com.orderpayment.response;
 
 import java.math.BigDecimal;
+
+import com.orderpayment.model.OrderItem;
 
 public class OrderItemResponse {
 
@@ -9,6 +11,7 @@ public class OrderItemResponse {
 	private BigDecimal pricePerUnit;
 
 	private BigDecimal totalPrice;
+	
 
 	public int getQuantity() {
 		return quantity;
@@ -46,6 +49,13 @@ public class OrderItemResponse {
 		this.totalPrice = totalPrice;
 	}
 
+	public static OrderItemResponse convertToOrderItemResponse(OrderItem orderItem) {
+		OrderItemResponse resp =  new OrderItemResponse();
+		resp.setPricePerUnit(orderItem.getPricePerUnit());
+		resp.setQuantity(orderItem.getQuantity());
+		resp.setTotalPrice(orderItem.getTotalPrice());
+		return resp;
+	}
 	
 
 }

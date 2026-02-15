@@ -13,10 +13,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.orderpayment.dto.OrderResponse;
 import com.orderpayment.model.Order;
 import com.orderpayment.model.Status;
 import com.orderpayment.repo.OrderRepository;
+import com.orderpayment.response.OrderResponse;
 
 @Service
 public class OrderService {

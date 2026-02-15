@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.orderpayment.dto.OrderResponse;
 import com.orderpayment.model.Status;
+import com.orderpayment.response.OrderResponse;
 import com.orderpayment.service.OrderService;
 
 @RestController

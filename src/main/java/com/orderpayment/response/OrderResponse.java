@@ -1,4 +1,4 @@
-package com.orderpayment.dto;
+package com.orderpayment.response;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -32,10 +32,7 @@ public class OrderResponse {
 
 	public OrderResponse() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-
-
 
 	public long getId() {
 		return id;

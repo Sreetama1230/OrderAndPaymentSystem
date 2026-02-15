@@ -71,6 +71,15 @@ public class User {
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
 	}
+	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public User(String name, String email, Status status, LocalDateTime createAt, List<Order> orders) {
 		super();
@@ -79,6 +88,10 @@ public class User {
 		this.status = status;
 		this.createAt = createAt;
 		this.orders = orders;
+	}
+
+	public User() {
+		super();
 	}
 	
 

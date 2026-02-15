@@ -1,7 +1,11 @@
 package com.orderpayment.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.orderpayment.request.TagRequest;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -53,6 +57,9 @@ public class Tag {
 		this.products = products;
 	}
 
-
+public static Tag convertToTag(TagRequest tr) {
+	Tag tag = new Tag(tr.getName(), new ArrayList<>());
+	return tag;
+}
 	
 }
