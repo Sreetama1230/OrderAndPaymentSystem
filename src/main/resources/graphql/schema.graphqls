@@ -4,10 +4,10 @@ description:String
 price:Float
 stockQuantity:Int
 active:Boolean
-tagRequest:Set<TagRequest>
+tagRequest:[TagRequest]
 }
 
-type TagRequest{
+input TagRequest{
 name:String
 }
 
@@ -17,7 +17,7 @@ description:String
 price:Float
 stockQuantity:Int
 active:Boolean
-tagRequest:Set<TagResponse>
+tagRequest:[TagResponse]
 }
 
 type TagResponse{
@@ -25,3 +25,9 @@ id:Int
 name:String
 }
 
+type Mutation{
+createProduct(prodReq : ProductRequest) : ProductResponse
+}
+
+type Query{
+findByProductName(name : String) : ProductResponse}
