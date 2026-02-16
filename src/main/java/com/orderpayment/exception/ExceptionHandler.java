@@ -5,7 +5,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import com.orderpayment.response.ErrorResponse;
 
+import io.swagger.v3.oas.annotations.Hidden;
+
 @ControllerAdvice
+@Hidden
 public class ExceptionHandler {
 
 	@org.springframework.web.bind.annotation.ExceptionHandler
