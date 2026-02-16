@@ -30,4 +30,5 @@ createProduct(prodReq : ProductRequest) : ProductResponse
 }
 
 type Query{
-findByProductName(name : String) : ProductResponse}
+findByProductName(name : String) : ProductResponse
+}

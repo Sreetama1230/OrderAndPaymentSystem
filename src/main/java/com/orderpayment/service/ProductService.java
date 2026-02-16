@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.orderpayment.exception.ProductNotFoundException;
 import com.orderpayment.model.Product;
 import com.orderpayment.model.Tag;
 import com.orderpayment.repo.ProductRepository;
@@ -38,5 +39,13 @@ public class ProductService {
 		Product pct = productRepository.save(newProd);
 
 		return ProductResponse.convertToProductResponse(pct);
+	}
+	
+	public ProductResponse findByProductName(String name) {
+		Product dbProduct = productRepository.findByName(name);
+		if(dbProduct == null) {
+			throw new ProductNotFoundException("product is not present with this name!");
+		}
+		return ProductResponse.convertToProductResponse(dbProduct);
 	}
 }
