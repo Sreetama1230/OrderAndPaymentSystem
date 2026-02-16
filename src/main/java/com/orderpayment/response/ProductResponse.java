@@ -9,6 +9,8 @@ import com.orderpayment.model.Tag;
 
 public class ProductResponse {
 
+	private Long id;
+
 	private String name;
 
 	private String description;
@@ -18,7 +20,7 @@ public class ProductResponse {
 	private int stockQuantity;
 
 	private boolean active;
-	
+
 	private Set<TagResponse> tagResponse;
 
 	public String getName() {
@@ -69,9 +71,10 @@ public class ProductResponse {
 		this.tagResponse = tagResponse;
 	}
 
-	public ProductResponse(String name, String description, BigDecimal price, int stockQuantity, boolean active,
-			Set<TagResponse> tagResponse) {
+	public ProductResponse(Long id, String name, String description, BigDecimal price, int stockQuantity,
+			boolean active, Set<TagResponse> tagResponse) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.price = price;
@@ -80,14 +83,20 @@ public class ProductResponse {
 		this.tagResponse = tagResponse;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+
 	public ProductResponse() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	
+
 	public static ProductResponse convertToProductResponse(Product pd) {
-	Set<TagResponse> tagsResp=	pd.getTags().stream().map(t -> TagResponse.convertToTagResponse(t)).collect(Collectors.toSet());
-		return new ProductResponse(pd.getName(), pd.getDescription(), pd.getPrice(),
-				pd.getStockQuantity(), pd.isActive(), tagsResp);
+		Set<TagResponse> tagsResp = pd.getTags().stream().map(t -> TagResponse.convertToTagResponse(t))
+				.collect(Collectors.toSet());
+		
+		return new ProductResponse(pd.getId(), pd.getName(), pd.getDescription(), pd.getPrice(), pd.getStockQuantity(),
+				pd.isActive(), tagsResp);
 	}
 }

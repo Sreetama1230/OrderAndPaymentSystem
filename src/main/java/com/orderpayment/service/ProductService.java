@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,8 @@ public class ProductService {
 
 	@Autowired
 	private TagRepository tagRepository;
+	
+	Logger log = LoggerFactory.getLogger(ProductService.class);
 
 	public ProductResponse saveProduct(ProductRequest productRequest) {
 		Set<Tag> tags = productRequest.getTagRequest().stream().map(tr -> Tag.convertToTag(tr))
@@ -37,7 +41,7 @@ public class ProductService {
 		newProd.setTags(tags);
 
 		Product pct = productRepository.save(newProd);
-
+		log.info("product added successfully: "+pct.getId());
 		return ProductResponse.convertToProductResponse(pct);
 	}
 	

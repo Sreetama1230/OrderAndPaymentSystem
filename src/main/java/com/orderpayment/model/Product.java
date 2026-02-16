@@ -131,6 +131,11 @@ public class Product {
 		this.orderItems = orderItems;
 		this.tags = tags;
 	}
+
+	public Product() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
 	
 	

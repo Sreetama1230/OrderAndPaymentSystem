@@ -12,12 +12,13 @@ name:String
 }
 
 type ProductResponse{
+id:Int
 name:String
 description:String
 price:Float
 stockQuantity:Int
 active:Boolean
-tagRequest:[TagResponse]
+tagResponse:[TagResponse]
 }
 
 type TagResponse{

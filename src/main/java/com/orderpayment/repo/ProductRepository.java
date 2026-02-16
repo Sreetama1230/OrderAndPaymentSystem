@@ -10,6 +10,6 @@ import com.orderpayment.model.Product;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-	@Query("Select p from Product p where name = :name")
-	public Product findByName(@Param("name") String name);
+	@Query("Select p from Product p where p.name = :name")
+	public Product findByName( String name);
 }

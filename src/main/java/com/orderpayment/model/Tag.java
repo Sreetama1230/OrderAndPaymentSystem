@@ -20,10 +20,10 @@ public class Tag {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(unique = true)
 	private String name;
-	
+
 	@ManyToMany(mappedBy = "tags")
 	List<Product> products;
 
@@ -57,9 +57,14 @@ public class Tag {
 		this.products = products;
 	}
 
-public static Tag convertToTag(TagRequest tr) {
-	Tag tag = new Tag(tr.getName(), new ArrayList<>());
-	return tag;
-}
-	
+	public Tag() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public static Tag convertToTag(TagRequest tr) {
+		Tag tag = new Tag(tr.getName(), new ArrayList<>());
+		return tag;
+	}
+
 }

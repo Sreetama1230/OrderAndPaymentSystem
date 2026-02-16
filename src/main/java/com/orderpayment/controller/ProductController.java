@@ -19,13 +19,13 @@ public class ProductController {
 	private ProductService productService;
 
 	@MutationMapping("createProduct")
-	public ResponseEntity<ProductResponse> addProduct(@Argument ProductRequest productRequest) {
-		return new ResponseEntity<ProductResponse>(productService.saveProduct(productRequest), HttpStatus.CREATED);
+	public ProductResponse addProduct(@Argument ProductRequest prodReq) {
+		return productService.saveProduct(prodReq);
 	}
 
 	@QueryMapping("findByProductName")
-	public ResponseEntity<ProductResponse> findByProductName(@Argument String s) {
-		return new ResponseEntity<ProductResponse>(productService.findByProductName(s), HttpStatus.OK);
+	public ProductResponse findByProductName(@Argument String name) {
+		return productService.findByProductName(name);
 	}
 
 }
